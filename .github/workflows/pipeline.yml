@@ -41,6 +41,7 @@ jobs:
           multipleDeployment: false #optional, default true
 
   tag_release:
+    if: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
@@ -51,3 +52,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
+          DRY_RUN: true
