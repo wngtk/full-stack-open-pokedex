@@ -24,5 +24,5 @@ jobs:
         run: echo "$COMMIT_MESSAGES"
       - name: test skip tag
         env:
-          COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message)) }}
+          COMMIT_MESSAGE: ${{ join(toJson(github.event.commits.*.message), ',') }}
         run: echo "$COMMIT_MESSAGE"
